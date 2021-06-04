@@ -4,12 +4,15 @@ import classes from './Cart.module.css';
 import CartItem from './CartItem';
 
 const Cart = (props) => {
-  const produntInACart = useSelector((state) => state.cart.items);
-  //console.log(produntInACart);
-  const productListInACart = produntInACart.map((item) => (
+  const produntInACart = useSelector((state) => state.cart);
+//console.log(produntInACart);
+
+  const productListInACart = produntInACart.items.map((item) => (
+    item.quantity > 0 &&
     <CartItem
-      key={Math.floor(Math.random() * 1e16)}
+      key={item.id}
       item={{
+        id: item.id,
         title: item.title,
         quantity: item.quantity,
         total: item.totalPrice,
@@ -17,7 +20,7 @@ const Cart = (props) => {
       }}
     />
   ));
-  
+
   return (
     <Card className={classes.cart}>
       <h2>Your Shopping Cart</h2>
