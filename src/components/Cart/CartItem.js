@@ -13,12 +13,10 @@ const CartItem = (props) => {
 
     const itemCart = productItems.find(item=>item.id === id)
 
-    if(itemCart.id === id && itemCart.totalPrice > 0){
+    if(itemCart.id === id && itemCart.totalPrice >= 0){
      return dispatch(cartActions.removeItemCart(id))
     }
-  //  console.log(itemCart);
-    
-    return
+        
   }
 
   const addItemHandler = ()=>{
